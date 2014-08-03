@@ -26,10 +26,6 @@ minecraft {
     assetDir = "eclipse/assets"
 }
 
-dependencies {
-    
-}
-
 processResources
 {
     inputs.property "version", project.version
