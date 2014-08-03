@@ -17,11 +17,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.ChunkPosition;
 
-@Mod(modid = EnderCompass.MOD_ID, name = EnderCompass.NAME, version = EnderCompass.VERSION, dependencies = "required-after:Forge")
+@Mod(modid = EnderCompass.MOD_ID, version = EnderCompass.VERSION, useMetadata = true)
 public class EnderCompass {
     public static final String MOD_ID = "endercompass";
-    public static final String NAME = "Ender Compass";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "@VERSION@";
     @Mod.Instance(MOD_ID)
     public static EnderCompass instance;
     @SidedProxy(clientSide = "com.outlook.siribby.endercompass.ClientProxy", serverSide = "com.outlook.siribby.endercompass.CommonProxy")

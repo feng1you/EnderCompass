@@ -2,6 +2,7 @@
 /.gradle/
 /build/
 /eclipse/
+/run/
 
 # Eclipse
 /bin/
