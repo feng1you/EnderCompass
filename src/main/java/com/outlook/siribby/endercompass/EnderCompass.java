@@ -34,7 +34,7 @@ public class EnderCompass {
         ender_compass = new ItemEnderCompass().setUnlocalizedName("compassEnd").setCreativeTab(CreativeTabs.tabTools).setTextureName(MOD_ID + ":ender_compass");
         GameRegistry.registerItem(ender_compass, "ender_compass");
         channel = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
-        channel.registerMessage(PacketSyncStronghold.Handler.class, PacketSyncStronghold.class, 0, Side.CLIENT);
+        channel.registerMessage(PacketSyncStronghold.class, PacketSyncStronghold.class, 0, Side.CLIENT);
         FMLCommonHandler.instance().bus().register(this);
         proxy.registerRenders();
         GameRegistry.addRecipe(new ItemStack(ender_compass), " P ", "PEP", " P ", 'P', Items.ender_pearl, 'E', Items.ender_eye);
@@ -44,7 +44,7 @@ public class EnderCompass {
     public void playerTick(TickEvent.PlayerTickEvent event) {
         if (!event.player.worldObj.isRemote) {
             strongholdPos = event.player.worldObj.findClosestStructure("Stronghold", (int) event.player.posX, (int) event.player.posY, (int) event.player.posZ);
-            if (event.side == Side.SERVER && event.player instanceof EntityPlayerMP){
+            if (strongholdPos != null && event.side == Side.SERVER && event.player instanceof EntityPlayerMP) {
                 EntityPlayerMP player = (EntityPlayerMP) event.player;
                 channel.sendTo(new PacketSyncStronghold(strongholdPos), player);
             }
