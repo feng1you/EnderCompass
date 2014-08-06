@@ -19,7 +19,6 @@ apply plugin: 'forge'
 
 version = "1.0"
 group= "com.outlook.siribby.endercompass"
-archivesBaseName = "endercompass"
 
 minecraft {
     version = "1.7.10-10.13.0.1180"
@@ -28,6 +27,8 @@ minecraft {
     replaceIn "EnderCompass.java"
     replace "@VERSION@", project.version
 }
+
+archivesBaseName = "endercompass-" + project.minecraft.version
 
 processResources {
     inputs.property "version", project.version
