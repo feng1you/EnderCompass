@@ -7,29 +7,30 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.world.ChunkPosition;
 
 public class PacketSyncStronghold implements IMessage, IMessageHandler<PacketSyncStronghold, IMessage> {
-    public ChunkPosition strongholdPosition;
+    public ChunkPosition position;
 
-    public PacketSyncStronghold() {}
+    public PacketSyncStronghold() {
+    }
 
-    public PacketSyncStronghold(ChunkPosition par1ChunkPosition) {
-        strongholdPosition = par1ChunkPosition;
+    public PacketSyncStronghold(ChunkPosition position) {
+        this.position = position;
     }
 
     @Override
     public void toBytes(ByteBuf buffer) {
-        buffer.writeInt(strongholdPosition.chunkPosX);
-        buffer.writeInt(strongholdPosition.chunkPosY);
-        buffer.writeInt(strongholdPosition.chunkPosZ);
+        buffer.writeInt(position.chunkPosX);
+        buffer.writeInt(position.chunkPosY);
+        buffer.writeInt(position.chunkPosZ);
     }
 
     @Override
     public void fromBytes(ByteBuf buffer) {
-        strongholdPosition = new ChunkPosition(buffer.readInt(), buffer.readInt(), buffer.readInt());
+        position = new ChunkPosition(buffer.readInt(), buffer.readInt(), buffer.readInt());
     }
 
     @Override
     public IMessage onMessage(PacketSyncStronghold message, MessageContext ctx) {
-        EnderCompass.strongholdPos = message.strongholdPosition;
+        EnderCompass.strongholdPos = message.position;
         return null;
     }
 }
