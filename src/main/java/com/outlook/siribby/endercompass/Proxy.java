@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 
-public class CommonProxy {
+public class Proxy {
     private static World currentWorld;
 
     public void registerRender() {
@@ -26,7 +26,7 @@ public class CommonProxy {
             if (position != null) {
                 currentWorld = player.worldObj;
                 EnderCompass.strongholdPos = position;
-                EnderCompass.networkWrapper.sendTo(new PacketSyncStronghold(position), player);
+                EnderCompass.networkWrapper.sendTo(new MessageStrongholdPos(position), player);
             }
         }
     }

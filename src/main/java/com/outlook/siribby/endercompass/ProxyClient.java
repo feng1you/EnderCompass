@@ -12,7 +12,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-public class ClientProxy extends CommonProxy {
+public class ProxyClient extends Proxy {
     @Override
     public void registerRender() {
         super.registerRender();
