@@ -18,7 +18,7 @@ public class EnderCompass {
     public static final String VERSION = "@VERSION@";
     public static final Item ENDER_COMPASS = new ItemEnderCompass();
 
-    @SidedProxy(clientSide = "com.outlook.siribby.endercompass.ClientProxy", serverSide = "com.outlook.siribby.endercompass.CommonProxy")
+    @SidedProxy(clientSide = "com.outlook.siribby.endercompass.ProxyClient", serverSide = "com.outlook.siribby.endercompass.Proxy")
     public static Proxy proxy;
     public static SimpleNetworkWrapper networkWrapper;
     public static ChunkPosition strongholdPos;
