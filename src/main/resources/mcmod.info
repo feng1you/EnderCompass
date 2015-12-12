@@ -8,10 +8,8 @@
   "url": "https://github.com/MrIbby/EnderCompass",
   "updateUrl": "",
   "authorList": ["MrIbby"],
-  "credits": "LexManos",
+  "credits": "",
   "logoFile": "assets/endercompass/textures/gui/logo.png",
-  "screenshots": [],
-  "requiredMods": ["Forge"],
-  "dependencies": ["Forge"]
+  "screenshots": []
 }
 ]

@@ -1,4 +1,4 @@
-package com.outlook.siribby.endercompass;
+package com.outlook.siribby.endercompass.client;
 
 import net.minecraft.client.renderer.texture.TextureCompass;
 import net.minecraft.client.renderer.texture.TextureUtil;
@@ -12,20 +12,19 @@ public class TextureEnderCompass extends TextureCompass {
     }
 
     @Override
-    public void updateCompass(World world, double x, double z, double cameraDirection, boolean par8, boolean par9) {
-        ChunkPosition position = EnderCompass.strongholdPos;
-
-        if (position != null && !framesTextureData.isEmpty()) {
+    public void updateCompass(World world, double playerX, double playerZ, double cameraDirection, boolean par8, boolean par9) {
+        if (!framesTextureData.isEmpty()) {
             double d3 = 0.0D;
 
             if (world != null && !par8) {
-                ChunkCoordinates coords = new ChunkCoordinates(position.chunkPosX, position.chunkPosY, position.chunkPosZ);
-                double d4 = (double) coords.posX - x;
-                double d5 = (double) coords.posZ - z;
-                cameraDirection %= 360.0D;
-                d3 = -((cameraDirection - 90.0D) * Math.PI / 180.0D - Math.atan2(d5, d4));
+                ChunkPosition position = EnderCompassClient.strongholdPos;
 
-                if (!world.provider.isSurfaceWorld()) {
+                if (position != null) {
+                    double d4 = (double) position.chunkPosX - playerX;
+                    double d5 = (double) position.chunkPosZ - playerZ;
+                    cameraDirection %= 360.0D;
+                    d3 = -((cameraDirection - 90.0D) * Math.PI / 180.0D - Math.atan2(d5, d4));
+                } else {
                     d3 = Math.random() * Math.PI * 2.0D;
                 }
             }
