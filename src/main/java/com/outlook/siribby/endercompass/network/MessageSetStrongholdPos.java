@@ -1,11 +1,11 @@
 package com.outlook.siribby.endercompass.network;
 
 import com.outlook.siribby.endercompass.client.EnderCompassClient;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.world.ChunkPosition;
 
 public class MessageSetStrongholdPos implements IMessage, IMessageHandler<MessageSetStrongholdPos, IMessage> {
     private int x;
@@ -14,10 +14,10 @@ public class MessageSetStrongholdPos implements IMessage, IMessageHandler<Messag
 
     public MessageSetStrongholdPos() {}
 
-    public MessageSetStrongholdPos(ChunkPosition position) {
-        x = position.chunkPosX;
-        y = position.chunkPosY;
-        z = position.chunkPosZ;
+    public MessageSetStrongholdPos(BlockPos position) {
+        x = position.getX();
+        y = position.getY();
+        z = position.getZ();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class MessageSetStrongholdPos implements IMessage, IMessageHandler<Messag
 
     @Override
     public IMessage onMessage(MessageSetStrongholdPos message, MessageContext ctx) {
-        EnderCompassClient.strongholdPos = new ChunkPosition(message.x, message.y, message.z);
+        EnderCompassClient.strongholdPos = new BlockPos(message.x, message.y, message.z);
         return null;
     }
 }

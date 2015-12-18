@@ -1,11 +1,11 @@
 package com.outlook.siribby.endercompass.network;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.ChunkPosition;
 
 public class MessageGetStrongholdPos implements IMessage, IMessageHandler<MessageGetStrongholdPos, IMessage> {
     public MessageGetStrongholdPos() {}
@@ -19,7 +19,7 @@ public class MessageGetStrongholdPos implements IMessage, IMessageHandler<Messag
     @Override
     public IMessage onMessage(MessageGetStrongholdPos message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-        ChunkPosition position = player.worldObj.findClosestStructure("Stronghold", (int) player.posX, (int) player.posY, (int) player.posZ);
-        return position != null ? new MessageSetStrongholdPos(position) : null;
+        BlockPos pos = player.worldObj.getStrongholdPos("Stronghold", new BlockPos(player));
+        return pos != null ? new MessageSetStrongholdPos(pos) : null;
     }
 }
