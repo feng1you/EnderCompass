@@ -37,7 +37,6 @@ public class EnderCompassMod {
         network.registerMessage(new MessageGetStrongholdPos(), MessageGetStrongholdPos.class, 0, Side.SERVER);
         network.registerMessage(new MessageSetStrongholdPos(), MessageSetStrongholdPos.class, 1, Side.CLIENT);
 
-        FMLCommonHandler.instance().bus().register(proxy);
         MinecraftForge.EVENT_BUS.register(proxy);
 
         proxy.preInit();

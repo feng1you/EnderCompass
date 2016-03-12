@@ -6,6 +6,7 @@ import com.outlook.siribby.endercompass.network.MessageGetStrongholdPos;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureCompass;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -69,7 +70,7 @@ public class EnderCompassClient extends EnderCompassProxy {
                 double delta = compassTexture.angleDelta;
                 compassTexture.currentAngle = 0.0D;
                 compassTexture.angleDelta = 0.0D;
-                compassTexture.updateCompass(itemFrame.worldObj, itemFrame.posX, itemFrame.posZ, (double) MathHelper.wrapAngleTo180_float((float) (180 + itemFrame.field_174860_b.getHorizontalIndex() * 90)), false, true);
+                compassTexture.updateCompass(itemFrame.worldObj, itemFrame.posX, itemFrame.posZ, (double) MathHelper.wrapAngleTo180_float((float) (180 + itemFrame.facingDirection.getHorizontalIndex() * 90)), false, true);
                 compassTexture.currentAngle = angle;
                 compassTexture.angleDelta = delta;
             } else {
@@ -84,7 +85,7 @@ public class EnderCompassClient extends EnderCompassProxy {
 
             GlStateManager.pushAttrib();
             RenderHelper.enableStandardItemLighting();
-            minecraft.getRenderItem().renderItemModel(stack);
+            minecraft.getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
             RenderHelper.disableStandardItemLighting();
             GlStateManager.popAttrib();
 
