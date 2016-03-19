@@ -15,13 +15,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = "endercompass", name = "Ender Compass", version = "@VERSION@")
 public class EnderCompassMod {
-    public static final Item ender_compass = new Item().setUnlocalizedName("compassEnd").setCreativeTab(CreativeTabs.tabTools);
+    public static final Item ender_compass = new ItemEnderCompass().setUnlocalizedName("compassEnd").setCreativeTab(CreativeTabs.tabTools);
 
     @SidedProxy(clientSide = "com.outlook.siribby.endercompass.client.EnderCompassClient", serverSide = "com.outlook.siribby.endercompass.network.EnderCompassProxy")
     public static EnderCompassProxy proxy;
@@ -31,7 +29,7 @@ public class EnderCompassMod {
     public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerItem(ender_compass, "ender_compass");
         GameRegistry.addRecipe(new ItemStack(ender_compass), " E ", "ECE", " E ", 'E', Items.ender_eye, 'C', Items.compass);
-        ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(ender_compass, 0, 1, 1, 1));
+        //todo: ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(ender_compass, 0, 1, 1, 1));
 
         network = NetworkRegistry.INSTANCE.newSimpleChannel("endercompass");
         network.registerMessage(new MessageGetStrongholdPos(), MessageGetStrongholdPos.class, 0, Side.SERVER);

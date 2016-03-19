@@ -12,14 +12,14 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.2.2"
+version = "1.2.3"
 group = "com.outlook.siribby.endercompass"
 archivesBaseName = "EnderCompass"
 
 minecraft {
-    version = "1.8.9-11.15.1.1722"
+    version = "1.9-12.16.0.1767-1.9"
     runDir = "run"
-    mappings = "stable_20"
+    mappings = "snapshot_20160312"
     replaceIn "EnderCompassMod.java"
     replace "@VERSION@", project.version
 }
